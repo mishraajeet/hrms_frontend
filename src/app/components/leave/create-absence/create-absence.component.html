@@ -1,0 +1,124 @@
+<!-- begin::Row -->
+<div class="row gy-5 g-xl-8">
+    <div class="col-xxl-6">
+      <div class="card mb-5 mb-xl-10">
+        <div id="kt_account_profile_details" class="collapse show">
+          <form novalidate="" class="form">
+            <div class="card-body border-top p-9">
+               <div class="row mb-6">
+                <label class="col-lg-4 col-form-label fw-bold fs-6"
+                ><span class="required">Total Leave's</span></label>
+              <div class="col-lg-8 fv-row">
+                <input
+                  type="text"
+                  class="form-control form-control-lg form-control-solid"
+                  placeholder="Enter Total Leave's"
+                  name="leave"
+                  value=""
+                />
+              </div>
+               </div>
+              <div class="row mb-6">
+                <label class="col-lg-4 col-form-label fw-bold fs-6"
+                ><span class="required">Leave Type</span></label
+              >
+              <div class="col-lg-8 fv-row">
+                <select
+                class="form-select form-select-solid form-select-lg fw-bold"
+                name="leaveType"
+              >
+                <option value="">Select Leave Type</option>
+                <option value="Sick Leave">Sick Leave</option>
+                <option value="Earn Leave">Earn Leave</option>
+                <option value="Maternity Leave">Maternity Leave</option>
+                <option value="Paternity Leave">Paternity Leave</option>
+                <option value="Special Day Off">Special Day Off</option>
+              </select>
+              </div>
+              </div>
+              <div class="row mb-6">
+                <label class="col-lg-4 col-form-label fw-bold fs-6"
+                ><span class="required">Start Date</span></label
+              >
+              <div class="col-lg-8 fv-row">
+                <input
+                  type="date"
+                  class="form-control form-control-lg form-control-solid"
+                  name=""
+                  value=""
+                />
+              </div>
+              </div>
+              <div class="row mb-6">
+                <label class="col-lg-4 col-form-label fw-bold fs-6"
+                ><span class="required">End Date</span></label
+              >
+              <div class="col-lg-8 fv-row">
+                <input
+                  type="date"
+                  class="form-control form-control-lg form-control-solid"
+                  name=""
+                  value=""
+                />
+              </div>
+              </div>
+              <div class="row mb-6">
+                <label class="col-lg-4 col-form-label fw-bold fs-6"
+                ><span>Comment's</span></label
+              >
+              <div class="col-lg-8 fv-row">
+                <textarea
+                  rows="3" cols="10"
+                  class="form-control form-control-lg form-control-solid"
+                  placeholder="Enter Comment"
+                  name=""
+                  value=""
+                  multiple
+                ></textarea>
+              </div>
+              </div>
+            </div>
+            <div class="card-footer d-flex justify-content-end py-6 px-9">
+              <button
+                type="button"
+                class="btn btn-primary"
+                [disabled]="isLoading"
+              >
+                <ng-container *ngIf="!isLoading">Apply Leave</ng-container>
+                <ng-container *ngIf="isLoading">
+                  <span clas="indicator-progress" [style.display]="'block'">
+                    Please wait...{{ " " }}
+                    <span
+                      class="spinner-border spinner-border-sm align-middle ms-2"
+                    ></span>
+                  </span>
+                </ng-container>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+        <!-- <mat-card class="demo-inline-calendar-card">
+            <mat-calendar [(selected)]="selected"></mat-calendar>
+          </mat-card>
+           -->
+        <!-- <mat-form-field class="example-form-field">
+            <mat-label>First campaign</mat-label>
+            <mat-date-range-input
+              [formGroup]="campaignOne"
+              [rangePicker]="campaignOnePicker"
+              [comparisonStart]="campaignTwo.value.start"
+              [comparisonEnd]="campaignTwo.value.end">
+              <input matStartDate placeholder="Start date" formControlName="start">
+              <input matEndDate placeholder="End date" formControlName="end">
+            </mat-date-range-input>
+            <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="campaignOnePicker"></mat-datepicker-toggle>
+            <mat-date-range-picker #campaignOnePicker></mat-date-range-picker>
+          </mat-form-field> -->
+    </div>
+    <div class="col-xxl-6">
+    </div>
+  </div>
+  
+  

@@ -1,0 +1,112 @@
+<div class="card mb-5 mb-xl-8">
+<div class="card-header border-0 pt-5">
+    <!-- <h3 class="card-title align-items-start flex-column">
+      <span class="card-label fw-bolder fs-3 mb-1">Recent Orders</span>
+      <span class="text-muted mt-1 fw-bold fs-7">Over 500 orders</span>
+    </h3> -->
+      
+    <div id="kt_aside_nav_tab_menu" class="card-toolbar" routerLinkActive="menu-active-bg">
+      <a routerLink="/employee/add-employee" routerLinkActive="active" class="btn btn-sm btn-light-primary">
+        <span
+          [inlineSVG]="'./assets/media/icons/duotune/arrows/arr075.svg'"
+          class="svg-icon svg-icon-3"
+        ></span>
+        New Member
+      </a>
+    </div>
+</div>
+  <div class="card-body py-3">
+    <div class="table-responsive">
+      <table
+        class="table table-row-bordered table-row-gray-100 align-middle gs-0 gy-3"
+      >
+        <thead>
+          <tr class="fw-bolder text-muted">
+            <th class="min-w-150px">Order Id</th>
+            <th class="min-w-140px">Name</th>
+            <th class="min-w-120px">Date Of Joining</th>
+            <th class="min-w-120px">Company</th>
+            <th class="min-w-120px">Total</th>
+            <th class="min-w-120px">Status</th>
+            <!-- <th class="min-w-100px text-end">Actions</th> -->
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let i of allUsers">
+            <td>
+              <a class="text-gray-900 fw-bolder text-hover-primary fs-6">
+                {{i.EmployeeNo}}
+              </a>
+            </td>
+            <td>
+              <a
+                class="text-gray-900 fw-bolder text-hover-primary d-block mb-1 fs-6"
+              >
+                {{i.fullName}}
+              </a>
+              <span class="text-muted fw-bold text-muted d-block fs-7"
+                >{{i.Email}}</span
+              >
+            </td>
+            <td>
+              <a
+                class="text-gray-900 fw-bolder text-hover-primary d-block mb-1 fs-6"
+              >
+                {{i.DateOfJoining | date}}
+              </a>
+              <span class="text-muted fw-bold text-muted d-block fs-7"
+                >Code: Paid</span
+              >
+            </td>
+            <td>
+              <a
+                class="text-gray-900 fw-bolder text-hover-primary d-block mb-1 fs-6"
+              >
+                Intertico
+              </a>
+              <span class="text-muted fw-bold text-muted d-block fs-7">
+                Web, UI/UX Design
+              </span>
+            </td>
+            <td class="text-gray-900 fw-bolder text-hover-primary fs-6">$3560</td>
+            <td>
+              <span class="badge badge-light-success">Approved</span>
+            </td>
+            <!-- <td class="text-end">
+              <a
+                class="
+                  btn btn-icon btn-bg-light btn-active-color-primary btn-sm
+                  me-1
+                "
+              >
+                <span
+                  [inlineSVG]="'./assets/media/icons/duotune/general/gen019.svg'"
+                  class="svg-icon svg-icon-3"
+                ></span>
+              </a>
+              <a
+                class="
+                  btn btn-icon btn-bg-light btn-active-color-primary btn-sm
+                  me-1
+                "
+              >
+                <span
+                  [inlineSVG]="'./assets/media/icons/duotune/art/art005.svg'"
+                  class="svg-icon svg-icon-3"
+                ></span>
+              </a>
+              <a
+                class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm"
+              >
+                <span
+                  [inlineSVG]="'./assets/media/icons/duotune/general/gen027.svg'"
+                  class="svg-icon svg-icon-3"
+                ></span>
+              </a>
+            </td> -->
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>  
+</div>

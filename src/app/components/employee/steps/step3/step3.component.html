@@ -1,0 +1,170 @@
+<div class="pb-10 pb-lg-15">
+  <h2 class="fw-bolder text-gray-900">Step 3: Employee Position</h2>
+</div>
+<app-modal #modal [modalConfig]="modalConfig" (addedPosition)="addedPosition($event)">
+</app-modal>
+
+<div class="card mb-5 mb-xl-10">
+  <div id="kt_account_profile_details" class="collapse show">
+    <form [formGroup]="form"  novalidate="" class="form">
+      <div class="card-body border-top p-9">
+        <div class="row mb-6">
+          <label class="col-lg-4 col-form-label fw-bold fs-6"><span class="required">Division</span></label>
+          <div class="col-lg-7 fv-row">
+            <select class="form-select form-select-solid form-select-lg fw-bold" name="Division" formControlName="Division">
+              <option value="" selected>Select Division</option>
+              <option [value]="i.Description" *ngFor="let i of Division">{{i.Description}}</option>
+            </select>
+          </div>
+          <div class="col-lg-1 fv-row">
+            <a (click)="openModal('Division')" class="
+              btn btn-icon btn-bg-light btn-active-color-primary btn-sm
+              me-1
+            ">
+              <span [inlineSVG]="'./assets/media/icons/duotune/art/art005.svg'" class="svg-icon svg-icon-3"></span>
+            </a>
+          </div>
+        </div>
+
+        <div class="row mb-6">
+          <label class="col-lg-4 col-form-label fw-bold fs-6"><span class="required">Cost Center
+            </span></label>
+          <div class="col-lg-7 fv-row">
+            <select class="form-select form-select-solid form-select-lg fw-bold" name="Cost_Center" formControlName="Cost_Center">
+              <option value="">Select Cost Center </option>
+              <option [value]="i.Description" *ngFor="let i of Cost_Center">{{i.Description}}</option>
+            </select>
+          </div>
+          <div class="col-lg-1 fv-row">
+            <a (click)="openModal('Cost Center')" class="
+              btn btn-icon btn-bg-light btn-active-color-primary btn-sm
+              me-1
+            ">
+              <span [inlineSVG]="'./assets/media/icons/duotune/art/art005.svg'" class="svg-icon svg-icon-3"></span>
+            </a>
+          </div>
+        </div>
+
+        <div class="row mb-6">
+          <label class="col-lg-4 col-form-label fw-bold fs-6"><span class="required">Department
+            </span></label>
+          <div class="col-lg-7 fv-row">
+            <select class="form-select form-select-solid form-select-lg fw-bold" name="Department" formControlName="Department">
+              <option value="">Select Department
+              </option>
+              <option [value]="i.Description" *ngFor="let i of Department">{{i.Description}}</option>
+            </select>
+          </div>
+          <div class="col-lg-1 fv-row">
+            <a (click)="openModal('Department')" class="
+              btn btn-icon btn-bg-light btn-active-color-primary btn-sm
+              me-1
+            ">
+              <span [inlineSVG]="'./assets/media/icons/duotune/art/art005.svg'" class="svg-icon svg-icon-3"></span>
+            </a>
+          </div>
+        </div>
+
+        <div class="row mb-6">
+          <label class="col-lg-4 col-form-label fw-bold fs-6"><span class="required">Grade
+            </span></label>
+          <div class="col-lg-7 fv-row">
+            <select class="form-select form-select-solid form-select-lg fw-bold" name="Grade" formControlName="Grade">
+              <option value="">Select Grade
+              </option>
+              <option [value]="i.Description" *ngFor="let i of Grade">{{i.Description}}</option>
+            </select>
+          </div>
+          <div class="col-lg-1 fv-row">
+            <a (click)="openModal('Grade')" class="
+              btn btn-icon btn-bg-light btn-active-color-primary btn-sm
+              me-1
+            ">
+              <span [inlineSVG]="'./assets/media/icons/duotune/art/art005.svg'" class="svg-icon svg-icon-3"></span>
+            </a>
+          </div>
+        </div>
+
+        <div class="row mb-6">
+          <label class="col-lg-4 col-form-label fw-bold fs-6"><span class="required">Designation
+            </span></label>
+          <div class="col-lg-7 fv-row">
+            <select class="form-select form-select-solid form-select-lg fw-bold" name="Designation" formControlName="Designation">
+              <option value="">Select Designation
+              </option>
+              <option [value]="i.Description" *ngFor="let i of Designation">{{i.Description}}</option>
+            </select>
+          </div>
+          <div class="col-lg-1 fv-row">
+            <a (click)="openModal('Designation')" class="
+              btn btn-icon btn-bg-light btn-active-color-primary btn-sm
+              me-1
+            ">
+              <span [inlineSVG]="'./assets/media/icons/duotune/art/art005.svg'" class="svg-icon svg-icon-3"></span>
+            </a>
+          </div>
+        </div>
+
+        <div class="row mb-6">
+          <label class="col-lg-4 col-form-label fw-bold fs-6"><span class="required">Location
+            </span></label>
+          <div class="col-lg-7 fv-row">
+            <select class="form-select form-select-solid form-select-lg fw-bold" name="Location" formControlName="Location">
+              <option value="">Select Location
+              </option>
+              <option [value]="i.Description" *ngFor="let i of Location">{{i.Description}}</option>
+            </select>
+          </div>
+          <div class="col-lg-1 fv-row">
+            <a (click)="openModal('Location')" class="
+              btn btn-icon btn-bg-light btn-active-color-primary btn-sm
+              me-1
+            ">
+              <span [inlineSVG]="'./assets/media/icons/duotune/art/art005.svg'" class="svg-icon svg-icon-3"></span>
+            </a>
+          </div>
+        </div>
+
+        <div class="row mb-6">
+          <label class="col-lg-4 col-form-label fw-bold fs-6"><span class="required">Company
+            </span></label>
+          <div class="col-lg-7 fv-row">
+            <select class="form-select form-select-solid form-select-lg fw-bold" name="Company" formControlName="Company">
+              <option value="">Select Company
+              </option>
+              <option [value]="i.Description" *ngFor="let i of Company">{{i.Description}}</option>
+            </select>
+          </div>
+          <div class="col-lg-1 fv-row">
+            <a (click)="openModal('Company')" class="
+              btn btn-icon btn-bg-light btn-active-color-primary btn-sm
+              me-1
+            ">
+              <span [inlineSVG]="'./assets/media/icons/duotune/art/art005.svg'" class="svg-icon svg-icon-3"></span>
+            </a>
+          </div>
+        </div>
+
+        <div class="row mb-6">
+          <label class="col-lg-4 col-form-label fw-bold fs-6"><span class="required">Job title
+            </span></label>
+          <div class="col-lg-7 fv-row">
+            <select class="form-select form-select-solid form-select-lg fw-bold" name="Job_Title" formControlName="Job_Title">
+              <option value="">Select Job title
+              </option>
+              <option [value]="i.Description" *ngFor="let i of Job_Title">{{i.Description}}</option>
+            </select>
+          </div>
+          <div class="col-lg-1 fv-row">
+            <a (click)="openModal('Job Title')" class="
+              btn btn-icon btn-bg-light btn-active-color-primary btn-sm
+              me-1
+            ">
+              <span [inlineSVG]="'./assets/media/icons/duotune/art/art005.svg'" class="svg-icon svg-icon-3"></span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

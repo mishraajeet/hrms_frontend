@@ -1,0 +1,395 @@
+<div class="pb-10 pb-lg-15">
+  <h2 class="fw-bolder text-gray-900">Step 2: Basic Information</h2>
+  <!-- <div class="text-gray-500 fw-bold fs-6">
+    If you need more info, please check out
+    <a href="#" class="link-primary fw-bolder"> Help Page</a>.
+  </div> -->
+</div>
+<div class="card mb-5 mb-xl-10">
+  <div id="kt_account_profile_details" class="collapse show">
+    <form [formGroup]="form" novalidate="" class="form">
+      <div class="card-body border-top p-9">
+        <div class="row mb-6">
+          <label class="col-lg-4 col-form-label fw-bold fs-6">Profile Image</label>
+          <div class="col-lg-8">
+            <div
+              class="image-input image-input-outline"
+              data-kt-image-input="true"
+              [style.background-image]="'url(./assets/media/avatars/blank.png'"
+            >
+              <div
+                class="image-input-wrapper w-125px h-125px"
+                [style.background-image]="
+                  'url(./assets/media/avatars/300-1.jpg'
+                "
+              ></div>
+            </div>
+          </div>
+        </div>
+        <div class="row mb-6">
+          <label class="col-lg-4 col-form-label fw-bold fs-6"
+            ><span class="required">Employee Number Series</span></label>
+          <div class="col-lg-8 fv-row">
+            <select
+              #mySelect
+              class="form-select form-select-solid form-select-lg fw-bold"
+              name="EmployeeNumberSeries"
+              formControlName="EmployeeNumberSeries"
+              (change)="getSequenceNumber(mySelect.value)"
+            >
+              <option value="">Select</option>
+              <option value="Manual Entry">Manual Entry</option>
+              <option value="Permanent Employees">Permanent Employees</option>
+            </select>
+          </div>
+        </div>
+         <div class="row mb-6">
+          <label class="col-lg-4 col-form-label fw-bold fs-6"
+          ><span class="required">Employee No.</span></label>
+        <div class="col-lg-8 fv-row">
+          <input
+            type="text"
+            class="form-control form-control-lg form-control-solid"
+            placeholder="Enter Employee No."
+            name="company"
+            value=""
+            formControlName="EmployeeNo"
+          />
+        </div>
+         </div>
+         <!-- <div class="row mb-6">
+          <label class="col-lg-4 col-form-label required fw-bold fs-6"
+          >Full Name</label
+        >
+        <div class="col-lg-8">
+          <input
+                type="text"
+                class="
+                  form-control form-control-lg form-control-solid
+                  mb-2 mb-lg-0
+                "
+                placeholder=" Enter Full Name"
+                name=""
+                value=""
+              />
+        </div>
+         </div> -->
+        <!-- <div class="row mb-6">
+          <label class="col-lg-4 col-form-label required fw-bold fs-6"
+            >Date Of Birth</label
+          >
+          <div class="col-lg-8 fv-row">
+            <input
+              type="date"
+              class="form-control form-control-lg form-control-solid"
+              placeholder="Date Of Birth"
+              name=""
+            />
+          </div>
+        </div> -->
+        <div class="row mb-6">
+          <label class="col-lg-4 col-form-label fw-bold fs-6"
+          ><span class="required">Father Name</span></label
+        >
+        <div class="col-lg-8 fv-row">
+          <input
+            type="text"
+            class="form-control form-control-lg form-control-solid"
+            placeholder="Enter Father Name"
+            name=""
+            value=""
+            formControlName="FatherName"
+          />
+        </div>
+        </div>
+        <div class="row mb-6">
+          <label class="col-lg-4 col-form-label fw-bold fs-6"
+          ><span class="required">Spouse Name</span></label
+        >
+        <div class="col-lg-8 fv-row">
+          <input
+            type="text"
+            class="form-control form-control-lg form-control-solid"
+            placeholder="Enter Spouse Name"
+            name=""
+            value=""
+            formControlName="SpouseName"
+          />
+        </div>
+        </div>
+        <div class="row mb-6">
+          <label class="col-lg-4 col-form-label fw-bold fs-6"
+          ><span class="required">Adhaar Number</span></label
+        >
+        <div class="col-lg-8 fv-row">
+          <input
+            type="text"
+            class="form-control form-control-lg form-control-solid"
+            placeholder="Enter Adhaar Number"
+            name=""
+            value=""
+            formControlName="AdhaarNumber"
+          />
+        </div>
+        </div>
+        <div class="row mb-6">
+          <label class="col-lg-4 col-form-label fw-bold fs-6"
+          ><span class="required">Email</span></label
+        >
+        <div class="col-lg-8 fv-row">
+          <input
+            type="email"
+            class="form-control form-control-lg form-control-solid"
+            placeholder="Enter Email"
+            name=""
+            value=""
+            formControlName="Email"
+          />
+        </div>
+        </div>
+        <div class="row mb-6">
+          <label class="col-lg-4 col-form-label fw-bold fs-6"
+            ><span class="required">Gender</span></label
+          >
+          <div class="row col-lg-8 fv-row">
+            <div class="col">
+              <input
+                formControlName="Gender"
+                type="radio"
+                name="Gender"
+                class="btn-check"
+                id="kt_account_team_size_select_1"
+                value="Male"/>
+              <label
+                class="
+                  btn btn-outline btn-outline-dashed btn-outline-default
+                  w-100
+                  p-4
+                "
+                for="kt_account_team_size_select_1">
+                <span class="fw-bolder fs-3">Male</span>
+              </label>
+      
+            </div>
+            <div class="col">
+              <input
+                formControlName="Gender"
+                type="radio"
+                name="Gender"
+                class="btn-check"
+                id="kt_account_team_size_select_1"
+                value="Female"/>
+              <label
+                class="
+                  btn btn-outline btn-outline-dashed btn-outline-default
+                  w-100
+                  p-4
+                "
+                for="kt_account_team_size_select_1">
+                <span class="fw-bolder fs-3">Female</span>
+              </label>
+      
+            </div>
+            <div class="col">
+              <input
+                formControlName="Gender"
+                type="radio"
+                name="Gender"
+                class="btn-check"
+                id="kt_account_team_size_select_1"
+                value="Others"/>
+              <label
+                class="
+                  btn btn-outline btn-outline-dashed btn-outline-default
+                  w-100
+                  p-4
+                "
+                for="kt_account_team_size_select_1">
+                <span class="fw-bolder fs-3">Others</span>
+              </label>
+      
+            </div>
+          </div>
+        </div>
+        <div class="row mb-6">
+          <label class="col-lg-4 col-form-label fw-bold fs-6"
+          ><span class="required">Reporting Manager</span></label
+        >
+        <div class="col-lg-8 fv-row">
+          <select
+            class="form-select form-select-solid form-select-lg fw-bold"
+            name="RM"
+            formControlName="ReportingManager"
+          >
+            <option value="">Select a RM</option>
+            <option value="AF">Afghanistan</option>
+            <option value="AX">Aland Islands</option>
+            <option value="AL">Albania</option>
+            <option value="DZ">Algeria</option>
+            <option value="AS">American Samoa</option>
+            <option value="AD">Andorra</option>
+            <option value="AO">Angola</option>
+            <option value="AI">Anguilla</option>
+            <option value="AQ">Antarctica</option>
+            <option value="AG">Antigua and Barbuda</option>
+            <option value="AR">Argentina</option>
+            <option value="AM">Armenia</option>
+            <option value="AW">Aruba</option>
+            <option value="AU">Australia</option>
+            <option value="AT">Austria</option>
+            <option value="AZ">Azerbaijan</option>
+            <option value="BS">Bahamas</option>
+            <option value="BH">Bahrain</option>
+            <option value="BD">Bangladesh</option>
+            <option value="BB">Barbados</option>
+          </select>
+        </div>
+        </div>
+        <div class="row mb-6">
+          <label class="col-lg-4 col-form-label fw-bold fs-6"
+          ><span class="required">Mobile Number</span></label
+        >
+        <div class="col-lg-8 fv-row">
+          <input
+            type="text"
+            class="form-control form-control-lg form-control-solid"
+            placeholder="Enter Mobile Number"
+            name=""
+            value=""
+            formControlName="MobileNumber"
+          />
+        </div>
+        </div>
+        <div class="row mb-6">
+          <label class="col-lg-4 col-form-label required fw-bold fs-6"
+          >Status</label
+        >
+        <div class="col-lg-8 fv-row">
+          <select
+            class="form-select form-select-solid form-select-lg"
+            name="Status"
+            formControlName="Status"
+          >
+            <option value="">Select Status</option>
+            <option value="id">Confirmed</option>
+            <option value="msa">Consultant</option>
+            <option value="ca">Contract</option>
+            <option value="cs">Permanant</option>
+          </select>
+          <div class="form-text">
+            Please select a Status.
+          </div>
+        </div>
+        </div>
+        <div class="row mb-6">
+          <label class="col-lg-4 col-form-label required fw-bold fs-6"
+          >Date Of Joining</label
+        >
+        <div class="col-lg-8 fv-row">
+          <input
+          type="date"
+          class="form-control form-control-lg form-control-solid"
+          value=""
+          formControlName="DateOfJoining"
+        />
+        </div>
+        </div>
+        <div class="row mb-6">
+          <label class="col-lg-4 col-form-label fw-bold fs-6"
+          ><span class="required">Probation Period</span></label
+        >
+        <div class="col-lg-8 fv-row">
+          <input
+            type="number"
+            class="form-control form-control-lg form-control-solid"
+            placeholder=""
+            name=""
+            value=""
+            formControlName="ProbationPeriod"
+          />
+        </div>
+        </div>
+        <div class="row mb-6">
+         
+          <label class="col-lg-4 col-form-label fw-bold fs-6"
+          ><span class="required">Confirmation Date</span></label
+        >
+        <div class="col-lg-8 fv-row">
+          <input
+            type="date"
+            class="form-control form-control-lg form-control-solid"
+            placeholder=""
+            name=""
+            value=""
+            formControlName="ConfirmationDate"
+          />
+        </div>
+        </div>
+        <div class="row mb-6">
+          <label class="col-lg-4 col-form-label fw-bold fs-6"
+          ><span class="required">Emergency Contact Name</span></label
+        >
+        <div class="col-lg-8 fv-row">
+          <input
+            type="text"
+            class="form-control form-control-lg form-control-solid"
+            placeholder="Enter Emergency Contact Name"
+            name=""
+            value=""
+            formControlName="EmergencyContactName"
+          />
+        </div>
+        </div>
+        <div class="row mb-6">
+         
+          <label class="col-lg-4 col-form-label fw-bold fs-6"
+          ><span class="required">Emergency Contact Number</span></label
+        >
+        <div class="col-lg-8 fv-row">
+          <input
+            type="text"
+            class="form-control form-control-lg form-control-solid"
+            placeholder="Enter Emergency Contact Number"
+            name=""
+            value=""
+            formControlName="EmergencyContactNumber"
+          />
+        </div>
+        </div>
+        <div class="row mb-0">
+          <label class="col-lg-4 col-form-label fw-bold fs-6"
+            >Allow the employee to fill in their information</label
+          >
+          <div class="col-lg-8 d-flex align-items-center">
+            <div class="form-check form-check-solid form-switch fv-row">
+              <input
+                class="form-check-input w-45px h-30px"
+                type="checkbox"
+                id="allowmarketing"
+                formControlName="isEditableByEmp"
+              /><label class="form-check-label"></label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="card-footer d-flex justify-content-end py-6 px-9">
+        <button
+          type="button"
+          class="btn btn-primary"
+          [disabled]="isLoading"
+          (click)="saveSettings()"
+        >
+          <ng-container *ngIf="!isLoading">Save Changes</ng-container>
+          <ng-container *ngIf="isLoading">
+            <span clas="indicator-progress" [style.display]="'block'">
+              Please wait...{{ " " }}
+              <span
+                class="spinner-border spinner-border-sm align-middle ms-2"
+              ></span>
+            </span>
+          </ng-container>
+        </button>
+      </div> -->
+    </form>
+  </div>
+</div>

@@ -1,0 +1,39 @@
+<div class="pb-10 pb-lg-15">
+  <h2 class="fw-bolder text-gray-900">Step 1: Rehire Check</h2>
+</div>
+<div class="card mb-5 mb-xl-10">
+  <div id="kt_account_profile_details" class="collapse show">
+    <form [formGroup]="form"  novalidate="" class="form" >
+      <div class="card-body border-top p-9">
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="fv-row mb-12">
+              <label class="form-label required"> Name</label><input name="fullName"
+                class="form-control form-control-lg form-control-solid" formControlName="fullName" />
+              <div class="fv-plugins-message-container invalid-feedback" *ngIf="
+                    form.get('fullName')?.hasError('required') &&
+                    form.get('fullName')?.touched
+                  ">
+                Name is required
+              </div>
+            </div>
+            <div class="fv-row mb-12">
+              <label class="form-label required">Date Of Birth</label><input name="DOB"
+                class="form-control form-control-lg form-control-solid" type="date" formControlName="DOB" />
+              <div class="fv-plugins-message-container invalid-feedback" *ngIf="
+                    form.get('DOB')?.hasError('required') &&
+                    form.get('DOB')?.touched
+                  ">
+                Date Of Birth
+              </div>
+            </div>
+            <!-- <button type="submit" class="btn btn-lg btn-primary"> Check
+            </button> -->
+          </div>
+          <!-- <div class="col-lg-6">
+          </div> -->
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

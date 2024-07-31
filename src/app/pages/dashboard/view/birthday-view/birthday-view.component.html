@@ -1,0 +1,15 @@
+<div class="card-header border-0">
+    <h3 class="card-title fw-bolder text-gray-900">Birthday</h3>
+  </div>
+  <div class="card-body pt-2">
+    <div class="d-flex align-items-center mb-8" *ngFor="let i of empBirthday">
+      <div class="flex-grow-1">
+        <a  class="text-gray-800 text-hover-primary fw-bolder fs-6">
+          {{i.fullName}}
+        </a>
+        <span class="text-muted fw-bold d-block">{{i.DOB | date}}</span>
+      </div>
+      <!-- <span class="badge badge-light-success fs-8 fw-bolder">New</span> -->
+    </div>
+  </div>
+  

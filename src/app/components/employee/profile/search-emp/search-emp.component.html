@@ -1,0 +1,49 @@
+<h2 class="fw-bolder text-gray-900">Start searching to see specific employee details here</h2>
+<div class="card mb-5 mb-xl-10">
+  <div id="kt_account_profile_details" class="collapse show">
+    <form novalidate="" class="form">
+      <div class="card-body border-top p-9">
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="fv-row mb-12">
+              <span [inlineSVG]="'./assets/media/icons/duotune/general/gen021.svg'"
+                class="svg-icon svg-icon-2 svg-icon-lg-3 svg-icon-gray-800 position-absolute top translate-middle-y ms-5"></span>
+              <input type="text" autocomplete="off" [(ngModel)]="searchText" (ngModelChange)="search($event)"
+                class="search-input form-control form-control-solid ps-13" name="search"
+                placeholder="Search by Emp No/Name" data-kt-search-element="input">
+
+              <!--  DropDown Starts  -->
+              <div class="card" [hidden]="showLoading">
+                <div class="search">
+                  <div *ngFor="let i of suggestions;" tappable (click)="setEmpName(i)"
+                    class="search-result">
+                    {{i.fullName}}
+                  </div>
+                </div>
+                <p class="search" *ngIf="suggestions && suggestions.length <= 0 && showLoading">No Car found</p>
+              </div>
+              <!--  DropDown Ends  -->
+
+              <ng-container *ngIf="showLoading">
+                <span class="position-absolute top end-0 translate-middle-y lh-0 me" data-kt-search-element="spinner">
+                  <span class="spinner-border h-15px w-15px align-middle text-gray-500"></span>
+                </span>
+              </ng-container>
+
+              <ng-container *ngIf="!showLoading">
+                <ng-container>
+                  <span (click)="resetSearchText()"
+                    class="btn btn-flush btn-active-color-primary position-absolute top end-0 translate-middle-y lh-0 me"
+                    data-kt-search-element="clear">
+                    <span [inlineSVG]="'./assets/media/icons/duotune/arrows/arr061.svg'"
+                      class="svg-icon svg-icon-2 svg-icon-lg-1 me-0"></span>
+                  </span>
+                </ng-container>
+              </ng-container>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

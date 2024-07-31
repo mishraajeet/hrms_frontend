@@ -1,0 +1,34 @@
+<div class="flex-column-fluid hover-scroll-y" data-kt-scroll="true" data-kt-scroll-activate="true"
+  data-kt-scroll-height="auto" data-kt-scroll-wrappers="#kt_aside_wordspace"
+  data-kt-scroll-dependencies="#kt_aside_secondary_footer" data-kt-scroll-offset="0px">
+  <div class="tab-content">
+
+    <app-projects-tab class="tab-pane fade" id="kt_aside_nav_tab_projects" role="tabpanel"
+      [ngClass]="{'active show': activeTab.link === 'Dashboard'}">
+    </app-projects-tab>
+
+    <app-menu-tab class="tab-pane fade" id="kt_aside_nav_tab_menu" role="tabpanel"
+      [ngClass]="{'active show': activeTab.link === 'employee'}"></app-menu-tab>
+
+    <app-subscriptions-tab class="tab-pane fade" id="kt_aside_nav_tab_subscription" role="tabpanel"
+      [ngClass]="{'active show': activeTab.link === 'payroll'}">
+    </app-subscriptions-tab>
+
+    <app-tasks-tab class="tab-pane fade" id="kt_aside_nav_tab_tasks" role="tabpanel"
+      [ngClass]="{'active show': activeTab.link === 'Leave'}"></app-tasks-tab>
+
+    <app-notifications-tab class="tab-pane fade  active show" id="kt_aside_nav_tab_notifications" role="tabpanel"
+      [ngClass]="{'active show': activeTab.link === 'User Administration'}">
+    </app-notifications-tab>
+
+    <app-notifications-tab class="tab-pane fade  active show" id="kt_aside_nav_tab_notifications" role="tabpanel"
+      [ngClass]="{'active show': activeTab.link === 'System Setting'}">
+    </app-notifications-tab>
+
+    <app-notifications-tab class="tab-pane fade  active show" id="kt_aside_nav_tab_notifications" role="tabpanel"
+      [ngClass]="{'active show': activeTab.link === 'Sys Admin Backroom'}">
+    </app-notifications-tab>
+
+  </div>
+</div>
+

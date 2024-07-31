@@ -1,0 +1,53 @@
+<div class="pb-10 pb-lg-15">
+  <h2 class="fw-bolder text-gray-900">Step 5: Payment Mode</h2>
+</div>
+<div class="card mb-5 mb-xl-10">
+  <div id="kt_account_profile_details" class="collapse show">
+    <form [formGroup]="form" novalidate="" class="form">
+      <div class="card-body border-top p-9">
+        <div class="row mb-6">
+          <label class="col-lg-4 col-form-label fw-bold fs-6"><span>Payment Type </span></label>
+          <div class="col-lg-8 fv-row">
+            <select class="form-select form-select-solid form-select-lg fw-bold" name="paymentType"
+              formControlName="paymentType">
+              <option value="">Select</option>
+              <option value="Cash">Cash</option>
+              <option value="Bank Transfer">Bank Transfer</option>
+              <option value="Cheque">Cheque</option>
+              <option value="Demand Draft">Demand Draft</option>
+            </select>
+          </div>
+        </div>
+        <div class="row mb-6">
+          <label class="col-lg-4 col-form-label fw-bold fs-6"><span>Bank Name</span></label>
+          <div class="col-lg-8 fv-row">
+            <input type="text" class="form-control form-control-lg form-control-solid" placeholder="Enter Bank Name"
+              name="BankName" value="" formControlName="bankName" />
+          </div>
+        </div>
+        <div class="row mb-6">
+          <label class="col-lg-4 col-form-label fw-bold fs-6"><span>Bank Branch </span></label>
+          <div class="col-lg-8 fv-row">
+            <input type="text" class="form-control form-control-lg form-control-solid" placeholder="Enter Branch Name"
+              name="bankBranch" value="" formControlName="bankBranch" />
+          </div>
+        </div>
+        <div class="row mb-6">
+          <label class="col-lg-4 col-form-label fw-bold fs-6"><span>Account Number</span></label>
+          <div class="col-lg-8 fv-row">
+            <input type="text" class="form-control form-control-lg form-control-solid"
+              placeholder="Enter Account Number" name="accountNumber" value="" formControlName="accountNumber" />
+          </div>
+        </div>
+        <div class="row mb-6">
+          <label class="col-lg-4 col-form-label fw-bold fs-6"><span>DD Payable At
+            </span></label>
+          <div class="col-lg-8 fv-row">
+            <input type="text" class="form-control form-control-lg form-control-solid" placeholder="Enter DD Payable At"
+              name="dDPayableAt" value="" formControlName="dDPayableAt" />
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
