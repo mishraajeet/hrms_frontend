@@ -6,6 +6,7 @@ import { AuthModel } from '../models/auth.model';
 import { AuthHTTPService } from './auth-http';
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
+import { RestService } from '../../../services/rest.service';
 
 export type UserType = UserModel | undefined;
 
@@ -14,8 +15,10 @@ export type UserType = UserModel | undefined;
 })
 export class AuthService implements OnDestroy {
   // private fields
-  private unsubscribe: Subscription[] = []; // Read more: => https://brianflove.com/2016/12/11/anguar-2-unsubscribe-observables/
+  private unsubscribe: Subscription[] = [];
   private authLocalStorageToken = `${environment.appVersion}-${environment.USERDATA_KEY}`;
+  api: String = 'api/user/';
+
 
   // public fields
   currentUser$: Observable<UserType>;
@@ -33,7 +36,8 @@ export class AuthService implements OnDestroy {
 
   constructor(
     private authHttpService: AuthHTTPService,
-    private router: Router
+    private router: Router,
+    private rest: RestService
   ) {
     this.isLoadingSubject = new BehaviorSubject<boolean>(false);
     this.currentUserSubject = new BehaviorSubject<UserType>(undefined);
@@ -59,6 +63,8 @@ export class AuthService implements OnDestroy {
       finalize(() => this.isLoadingSubject.next(false))
     );
   }
+
+  loginUser(param = {}){ return this.rest.post( `${this.api}login`, param); }
 
   logout() {
     localStorage.removeItem(this.authLocalStorageToken);

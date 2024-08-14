@@ -73,9 +73,11 @@ export class AddEmpComponent implements OnInit, OnDestroy{
 
   registerUser(){
     this.empService.registerUser(this.userData).subscribe((res: any)=>{
-      if(res.status === 200){
+      if(res.result){
       this.global.redirect('analytics-hub')
       }
+    },(err)=>{
+      this.global.showErrorMsg(err);
     })
   }
 }
