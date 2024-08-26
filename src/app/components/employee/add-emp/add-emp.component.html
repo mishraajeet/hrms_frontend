@@ -71,7 +71,7 @@
             </ng-container>
   
             <ng-container *ngIf="currentStep$.value === 2">
-              <app-step2
+              <app-step2 [rm] = "rm"
                 class="w-100"
                 [updateParentModel]="updateAccount"
                 [defaultValues]="account$.value"

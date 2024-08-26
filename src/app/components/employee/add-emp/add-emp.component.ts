@@ -13,6 +13,7 @@ export class AddEmpComponent implements OnInit, OnDestroy{
 
   allPosition: any = []
   userData: any;
+  rm: any = []
 
   formsCount = 6;
   account$: BehaviorSubject<ICreateAccount> =
@@ -28,6 +29,7 @@ export class AddEmpComponent implements OnInit, OnDestroy{
 
   ngOnInit(): void {
     this.getAllPosition()
+    this.getReportingManager()
   }
 
   updateAccount = (part: Partial<ICreateAccount>, isFormValid: boolean) => {
@@ -59,6 +61,12 @@ export class AddEmpComponent implements OnInit, OnDestroy{
 
   ngOnDestroy() {
     this.unsubscribe.forEach((sb) => sb.unsubscribe());
+  }
+
+  getReportingManager(){
+    this.empService.getReportingManager().subscribe((res:any) =>{
+        this.rm = res.data
+    })
   }
 
   getAllPosition() {

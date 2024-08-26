@@ -11,6 +11,11 @@ import { GlobalService } from '../../../../services/global.service';
 })
 export class Step2Component implements OnInit, OnDestroy {
   isLoading: boolean;
+  @Input() public rm:any
+  selectedFile: any | null = null;
+  previewUrl: string | ArrayBuffer | null = null;
+
+
   @Input('updateParentModel') updateParentModel: (
     part: Partial<ICreateAccount>,
     isFormValid: boolean
@@ -52,6 +57,7 @@ export class Step2Component implements OnInit, OnDestroy {
       EmergencyContactName: ['',Validators.required],
       EmergencyContactNumber: ['',Validators.required],
       isEditableByEmp: [this.defaultValues.isEditableByEmp,Validators.required],
+      img: [''],
       seriel_id: ['']
     });
 
@@ -93,6 +99,23 @@ export class Step2Component implements OnInit, OnDestroy {
     this.empService.saveSequenceNumber().subscribe((res: any)=>{
       this.form.patchValue({EmployeeNo: res.data.sequence})
       this.form.patchValue({seriel_id: res.data._id})
+    })
+  }
+  onFileSelected(event: any) {
+    this.selectedFile = event.target.files[0];    
+    const reader = new FileReader();
+    reader.onload = (e) => this.previewUrl = reader.result;
+    reader.readAsDataURL(this.selectedFile);
+  }
+
+  onUpload() {
+    if (!this.selectedFile) return;
+
+    const formData = new FormData();
+    formData.append('image', this.selectedFile, this.selectedFile.name);
+    this.empService.uploadEmpImage(formData).subscribe((res:any)=>{
+      this.form.patchValue({img: res.imageUrl})
+      console.log('Upload successful:', res);
     })
   }
 }

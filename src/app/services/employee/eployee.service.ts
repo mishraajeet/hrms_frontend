@@ -19,7 +19,9 @@ export class EployeeService {
   // ============Users API=========================//
   registerUser(param = {}){ return this.rest.post( `${this.userApi}registerUser`, param); }
   getAllUser(param = {}){ return this.rest.post( `${this.userApi}getAllUsers`, param); }
+  getReportingManager(param = {}){ return this.rest.get( `${this.userApi}getReportingManager`, param); }
   saveSequenceNumber(){ return this.rest.get(`${this.userApi}saveSequenceNumber`);}
   updateEmpProfile(param = {}){ return this.rest.put(`${this.userApi}updateProfile`,param);}
+  uploadEmpImage(param = {}){ return this.rest.post(`emp_profile`,param)}
 
 }

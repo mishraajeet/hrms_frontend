@@ -15,10 +15,15 @@ export const routes: Routes = [
   },
   {
     path: '',
-    canActivate: [AuthGuard],
     loadChildren: () =>
       import('./_metronic/layout/layout.module').then((m) => m.LayoutModule),
   },
+  // {
+  //   path: '',
+  //   canActivate: [AuthGuard],
+  //   loadChildren: () =>
+  //     import('./_metronic/layout/layout.module').then((m) => m.LayoutModule),
+  // },
   { path: '**', redirectTo: 'error/404' },
 ];
 
