@@ -10,16 +10,22 @@
     <form [formGroup]="form" novalidate="" class="form">
       <div class="card-body border-top p-9">
         <div class="row mb-6">
-          <label class="col-lg-4 col-form-label fw-bold fs-6">Profile Image</label>
+          <label class="col-lg-4 col-form-label fw-bold fs-6"
+            >Profile Image</label
+          >
           <div class="col-lg-8">
             <input type="file" (change)="onFileSelected($event)" />
             <button (click)="onUpload()">Upload</button>
-            <div *ngIf="previewUrl">
-              <img [src]="previewUrl" alt="Profile Image Preview" class="image-input-wrapper w-125px h-125px"/>
+            <div *ngIf="previewUrl" class="m-2">
+              <img
+                [src]="previewUrl"
+                alt="Profile Image Preview"
+                class="image-input-wrapper w-125px h-125px"
+              />
             </div>
           </div>
         </div>
-        
+
         <!-- <div class="row mb-6">
           <label class="col-lg-4 col-form-label fw-bold fs-6">Profile Image</label>
           <div class="col-lg-8">
@@ -39,7 +45,8 @@
         </div> -->
         <div class="row mb-6">
           <label class="col-lg-4 col-form-label fw-bold fs-6"
-            ><span class="required">Employee Number Series</span></label>
+            ><span class="required">Employee Number Series</span></label
+          >
           <div class="col-lg-8 fv-row">
             <select
               #mySelect
@@ -53,80 +60,136 @@
               <option value="Permanent Employees">Permanent Employees</option>
             </select>
           </div>
-        </div>
-         <div class="row mb-6">
-          <label class="col-lg-4 col-form-label fw-bold fs-6"
-          ><span class="required">Employee No.</span></label>
-        <div class="col-lg-8 fv-row">
-          <input
-            type="text"
-            class="form-control form-control-lg form-control-solid"
-            placeholder="Enter Employee No."
-            name="company"
-            value=""
-            formControlName="EmployeeNo"
-          />
-        </div>
-         </div>
-        <div class="row mb-6">
-          <label class="col-lg-4 col-form-label fw-bold fs-6"
-          ><span class="required">Father Name</span></label
-        >
-        <div class="col-lg-8 fv-row">
-          <input
-            type="text"
-            class="form-control form-control-lg form-control-solid"
-            placeholder="Enter Father Name"
-            name=""
-            value=""
-            formControlName="FatherName"
-          />
-        </div>
+          <div
+            class="fv-plugins-message-container invalid-feedback"
+            *ngIf="
+              form.get('EmployeeNumberSeries')?.hasError('required') &&
+              form.get('EmployeeNumberSeries')?.touched
+            "
+          >
+            Employee Number Series is required
+          </div>
         </div>
         <div class="row mb-6">
           <label class="col-lg-4 col-form-label fw-bold fs-6"
-          ><span class="required">Spouse Name</span></label
-        >
-        <div class="col-lg-8 fv-row">
-          <input
-            type="text"
-            class="form-control form-control-lg form-control-solid"
-            placeholder="Enter Spouse Name"
-            name=""
-            value=""
-            formControlName="SpouseName"
-          />
-        </div>
-        </div>
-        <div class="row mb-6">
-          <label class="col-lg-4 col-form-label fw-bold fs-6"
-          ><span class="required">Adhaar Number</span></label
-        >
-        <div class="col-lg-8 fv-row">
-          <input
-            type="text"
-            class="form-control form-control-lg form-control-solid"
-            placeholder="Enter Adhaar Number"
-            name=""
-            value=""
-            formControlName="AdhaarNumber"
-          />
-        </div>
+            ><span class="required">Employee No.</span></label
+          >
+          <div class="col-lg-8 fv-row">
+            <input
+              type="text"
+              class="form-control form-control-lg form-control-solid"
+              placeholder="Enter Employee No."
+              name="company"
+              value=""
+              formControlName="EmployeeNo"
+            />
+          </div>
+
+          <div
+            class="fv-plugins-message-container invalid-feedback"
+            *ngIf="
+              form.get('EmployeeNo')?.hasError('required') &&
+              form.get('EmployeeNo')?.touched
+            "
+          >
+            Employee Number is required
+          </div>
         </div>
         <div class="row mb-6">
           <label class="col-lg-4 col-form-label fw-bold fs-6"
-          ><span class="required">Email</span></label
-        >
-        <div class="col-lg-8 fv-row">
-          <input
-            type="email"
-            class="form-control form-control-lg form-control-solid"
-            placeholder="Enter Email"
-            name=""
-            value=""
-            formControlName="Email"
-          />
+            ><span class="required">Father Name</span></label
+          >
+          <div class="col-lg-8 fv-row">
+            <input
+              type="text"
+              class="form-control form-control-lg form-control-solid"
+              placeholder="Enter Father Name"
+              name=""
+              value=""
+              formControlName="FatherName"
+            />
+          </div>
+          <div
+            class="fv-plugins-message-container invalid-feedback"
+            *ngIf="
+              form.get('FatherName')?.hasError('required') &&
+              form.get('FatherName')?.touched
+            "
+          >
+            Father Name is required
+          </div>
         </div>
+        <div class="row mb-6">
+          <label class="col-lg-4 col-form-label fw-bold fs-6"
+            ><span class="required">Spouse Name</span></label
+          >
+          <div class="col-lg-8 fv-row">
+            <input
+              type="text"
+              class="form-control form-control-lg form-control-solid"
+              placeholder="Enter Spouse Name"
+              name=""
+              value=""
+              formControlName="SpouseName"
+            />
+          </div>
+          <div
+            class="fv-plugins-message-container invalid-feedback"
+            *ngIf="
+              form.get('SpouseName')?.hasError('required') &&
+              form.get('SpouseName')?.touched
+            "
+          >
+            Spouse Name is required
+          </div>
+        </div>
+        <div class="row mb-6">
+          <label class="col-lg-4 col-form-label fw-bold fs-6"
+            ><span class="required">Adhaar Number</span></label
+          >
+          <div class="col-lg-8 fv-row">
+            <input
+              type="text"
+              class="form-control form-control-lg form-control-solid"
+              placeholder="Enter Adhaar Number"
+              name=""
+              value=""
+              formControlName="AdhaarNumber"
+            />
+          </div>
+          <div
+            class="fv-plugins-message-container invalid-feedback"
+            *ngIf="
+              form.get('AdhaarNumber')?.hasError('required') &&
+              form.get('AdhaarNumber')?.touched
+            "
+          >
+            Adhaar Number is required
+          </div>
+        </div>
+        <div class="row mb-6">
+          <label class="col-lg-4 col-form-label fw-bold fs-6"
+            ><span class="required">Email</span></label
+          >
+          <div class="col-lg-8 fv-row">
+            <input
+              type="email"
+              class="form-control form-control-lg form-control-solid"
+              placeholder="Enter Email"
+              name=""
+              value=""
+              formControlName="Email"
+            />
+          </div>
+          <div
+            class="fv-plugins-message-container invalid-feedback"
+            *ngIf="
+              form.get('Email')?.hasError('required') &&
+              form.get('Email')?.touched
+            "
+          >
+            Email is required
+          </div>
         </div>
         <div class="row mb-6">
           <label class="col-lg-4 col-form-label fw-bold fs-6"
@@ -145,132 +208,209 @@
               <option value="Other">Other</option>
             </select>
           </div>
-        </div>
-        <div class="row mb-6">
-          <label class="col-lg-4 col-form-label fw-bold fs-6"
-          ><span class="required">Reporting Manager</span></label
-        >
-        <div class="col-lg-8 fv-row">
-          <select
-            class="form-select form-select-solid form-select-lg fw-bold"
-            name="RM"
-            formControlName="ReportingManager"
+          <div
+            class="fv-plugins-message-container invalid-feedback"
+            *ngIf="
+              form.get('Gender')?.hasError('required') &&
+              form.get('Gender')?.touched
+            "
           >
-            <option value="">Select a RM</option>
-            <option value="AF" *ngFor="let i of rm">{{i.fullName}}</option>
-          </select>
-        </div>
-        </div>
-        <div class="row mb-6">
-          <label class="col-lg-4 col-form-label fw-bold fs-6"
-          ><span class="required">Mobile Number</span></label
-        >
-        <div class="col-lg-8 fv-row">
-          <input
-            type="text"
-            class="form-control form-control-lg form-control-solid"
-            placeholder="Enter Mobile Number"
-            name=""
-            value=""
-            formControlName="MobileNumber"
-          />
-        </div>
-        </div>
-        <div class="row mb-6">
-          <label class="col-lg-4 col-form-label required fw-bold fs-6"
-          >Status</label
-        >
-        <div class="col-lg-8 fv-row">
-          <select
-            class="form-select form-select-solid form-select-lg"
-            name="Status"
-            formControlName="Status"
-          >
-            <option value="">Select Status</option>
-            <option value="id">Confirmed</option>
-            <option value="msa">Consultant</option>
-            <option value="ca">Contract</option>
-            <option value="cs">Permanant</option>
-          </select>
-          <div class="form-text">
-            Please select a Status.
+            Gender is required
           </div>
         </div>
+        <div class="row mb-6">
+          <label class="col-lg-4 col-form-label fw-bold fs-6"
+            ><span class="required">Reporting Manager</span></label
+          >
+          <div class="col-lg-8 fv-row">
+            <select
+              class="form-select form-select-solid form-select-lg fw-bold"
+              name="RM"
+              formControlName="ReportingManager"
+            >
+              <option value="">Select a RM</option>
+              <option value="AF" *ngFor="let i of rm">{{ i.fullName }}</option>
+            </select>
+          </div>
+          <div
+            class="fv-plugins-message-container invalid-feedback"
+            *ngIf="
+              form.get('ReportingManager')?.hasError('required') &&
+              form.get('ReportingManager')?.touched
+            "
+          >
+            Reporting Manager is required
+          </div>
+        </div>
+        <div class="row mb-6">
+          <label class="col-lg-4 col-form-label fw-bold fs-6"
+            ><span class="required">Mobile Number</span></label
+          >
+          <div class="col-lg-8 fv-row">
+            <input
+              type="text"
+              class="form-control form-control-lg form-control-solid"
+              placeholder="Enter Mobile Number"
+              name=""
+              value=""
+              formControlName="MobileNumber"
+            />
+          </div>
+          <div
+            class="fv-plugins-message-container invalid-feedback"
+            *ngIf="
+              form.get('MobileNumber')?.hasError('required') &&
+              form.get('MobileNumber')?.touched
+            "
+          >
+            Mobile Number is required
+          </div>
         </div>
         <div class="row mb-6">
           <label class="col-lg-4 col-form-label required fw-bold fs-6"
-          >Date Of Joining</label
-        >
-        <div class="col-lg-8 fv-row">
-          <input
-          type="date"
-          class="form-control form-control-lg form-control-solid"
-          value=""
-          formControlName="DateOfJoining"
-        />
+            >Status</label
+          >
+          <div class="col-lg-8 fv-row">
+            <select
+              class="form-select form-select-solid form-select-lg"
+              name="Status"
+              formControlName="Status"
+            >
+              <option value="">Select Status</option>
+              <option value="id">Confirmed</option>
+              <option value="msa">Consultant</option>
+              <option value="ca">Contract</option>
+              <option value="cs">Permanant</option>
+            </select>
+            <div class="form-text">Please select a Status.</div>
+          </div>
+          <div
+            class="fv-plugins-message-container invalid-feedback"
+            *ngIf="
+              form.get('Status')?.hasError('required') &&
+              form.get('Status')?.touched
+            "
+          >
+            Status is required
+          </div>
         </div>
+        <div class="row mb-6">
+          <label class="col-lg-4 col-form-label required fw-bold fs-6"
+            >Date Of Joining</label
+          >
+          <div class="col-lg-8 fv-row">
+            <input
+              type="date"
+              class="form-control form-control-lg form-control-solid"
+              value=""
+              formControlName="DateOfJoining"
+            />
+          </div>
+          <div
+            class="fv-plugins-message-container invalid-feedback"
+            *ngIf="
+              form.get('DateOfJoining')?.hasError('required') &&
+              form.get('DateOfJoining')?.touched
+            "
+          >
+            Date Of Joining is required
+          </div>
         </div>
         <div class="row mb-6">
           <label class="col-lg-4 col-form-label fw-bold fs-6"
-          ><span class="required">Probation Period</span></label
-        >
-        <div class="col-lg-8 fv-row">
-          <input
-            type="number"
-            class="form-control form-control-lg form-control-solid"
-            placeholder=""
-            name=""
-            value=""
-            formControlName="ProbationPeriod"
-          />
-        </div>
-        </div>
-        <div class="row mb-6">
-         
-          <label class="col-lg-4 col-form-label fw-bold fs-6"
-          ><span class="required">Confirmation Date</span></label
-        >
-        <div class="col-lg-8 fv-row">
-          <input
-            type="date"
-            class="form-control form-control-lg form-control-solid"
-            placeholder=""
-            name=""
-            value=""
-            formControlName="ConfirmationDate"
-          />
-        </div>
+            ><span class="required">Probation Period</span></label
+          >
+          <div class="col-lg-8 fv-row">
+            <input
+              type="number"
+              class="form-control form-control-lg form-control-solid"
+              placeholder=""
+              name=""
+              value=""
+              formControlName="ProbationPeriod"
+            />
+          </div>
+          <div
+            class="fv-plugins-message-container invalid-feedback"
+            *ngIf="
+              form.get('ProbationPeriod')?.hasError('required') &&
+              form.get('ProbationPeriod')?.touched
+            "
+          >
+            Probation Period is required
+          </div>
         </div>
         <div class="row mb-6">
           <label class="col-lg-4 col-form-label fw-bold fs-6"
-          ><span class="required">Emergency Contact Name</span></label
-        >
-        <div class="col-lg-8 fv-row">
-          <input
-            type="text"
-            class="form-control form-control-lg form-control-solid"
-            placeholder="Enter Emergency Contact Name"
-            name=""
-            value=""
-            formControlName="EmergencyContactName"
-          />
-        </div>
+            ><span class="required">Confirmation Date</span></label
+          >
+          <div class="col-lg-8 fv-row">
+            <input
+              type="date"
+              class="form-control form-control-lg form-control-solid"
+              placeholder=""
+              name=""
+              value=""
+              formControlName="ConfirmationDate"
+            />
+          </div>
+          <div
+            class="fv-plugins-message-container invalid-feedback"
+            *ngIf="
+              form.get('ConfirmationDate')?.hasError('required') &&
+              form.get('ConfirmationDate')?.touched
+            "
+          >
+            Confirmation Date is required
+          </div>
         </div>
         <div class="row mb-6">
-         
           <label class="col-lg-4 col-form-label fw-bold fs-6"
-          ><span class="required">Emergency Contact Number</span></label
-        >
-        <div class="col-lg-8 fv-row">
-          <input
-            type="text"
-            class="form-control form-control-lg form-control-solid"
-            placeholder="Enter Emergency Contact Number"
-            name=""
-            value=""
-            formControlName="EmergencyContactNumber"
-          />
+            ><span class="required">Emergency Contact Name</span></label
+          >
+          <div class="col-lg-8 fv-row">
+            <input
+              type="text"
+              class="form-control form-control-lg form-control-solid"
+              placeholder="Enter Emergency Contact Name"
+              name=""
+              value=""
+              formControlName="EmergencyContactName"
+            />
+          </div>
+          <div
+            class="fv-plugins-message-container invalid-feedback"
+            *ngIf="
+              form.get('EmergencyContactName')?.hasError('required') &&
+              form.get('EmergencyContactName')?.touched
+            "
+          >
+            Emergency Contact Name is required
+          </div>
         </div>
+        <div class="row mb-6">
+          <label class="col-lg-4 col-form-label fw-bold fs-6"
+            ><span class="required">Emergency Contact Number</span></label
+          >
+          <div class="col-lg-8 fv-row">
+            <input
+              type="text"
+              class="form-control form-control-lg form-control-solid"
+              placeholder="Enter Emergency Contact Number"
+              name=""
+              value=""
+              formControlName="EmergencyContactNumber"
+            />
+          </div>
+          <div
+            class="fv-plugins-message-container invalid-feedback"
+            *ngIf="
+              form.get('EmergencyContactNumber')?.hasError('required') &&
+              form.get('EmergencyContactNumber')?.touched
+            "
+          >
+            Emergency Contact Number is required
+          </div>
         </div>
         <div class="row mb-0">
           <label class="col-lg-4 col-form-label fw-bold fs-6"
