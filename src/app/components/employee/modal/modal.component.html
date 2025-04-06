@@ -1,4 +1,4 @@
-<ng-template #modal>
+<ng-template #subposition>
     <div class="modal-content">
       <div class="modal-header">
         <h2>{{ modalConfig.modalTitle }} {{modalConfig.type}}</h2>
@@ -23,14 +23,14 @@
                   <td>
                     <div class="d-flex align-items-center">
                       <div class="d-flex justify-content-start flex-column">
-                         {{i.Description}}
+                         {{i.description}}
                       </div>
                     </div>
                   </td>
                   <td>
                     <div class="d-flex align-items-center">
                       <div class="d-flex justify-content-start flex-column">
-                         {{i.Code}}
+                         {{i.code}}
                       </div>
                     </div>
                   </td>
@@ -40,7 +40,7 @@
                   </td>
                   <td>
                     <div class="d-flex justify-content-end flex-shrink-0">
-                      <a
+                      <a (click)="deletePosition(i)"
                         class="
                           btn btn-icon btn-bg-light btn-active-color-primary btn-sm
                         "

@@ -82,13 +82,13 @@ export class ProfileDetailsComponent implements OnInit, OnDestroy {
   }
 
   updateProfile(){
-    let param = this.form.value
-    this.empSrv.updateEmpProfile(param).subscribe((res: any)=>{
-      console.log("=====>>",res)
-      if(res.Status === 200){
+    // let param = this.form.value
+    // this.empSrv.updateEmpProfile(param).subscribe((res: any)=>{
+    //   console.log("=====>>",res)
+    //   if(res.Status === 200){
 
-      }
-    })
+    //   }
+    // })
   }
 
   ngOnDestroy() {

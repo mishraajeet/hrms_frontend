@@ -1,0 +1,57 @@
+<ng-template #modal>
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Add Position</h2>
+        <div class="btn btn-sm btn-icon btn-active-color-primary" (click)="dismiss()"
+          *ngIf="modalConfig.hideDismissButton === undefined || !modalConfig.hideDismissButton()">
+          <span class="svg-icon svg-icon-1" [inlineSVG]="'./assets/media/icons/duotune/arrows/arr061.svg'"></span>
+        </div>
+      </div>
+      <div class="modal-body">
+          <div class="table-responsive">
+            <table class="table table-row-dashed table-row-gray-300 align-middle gs-0 gy-4">
+              <thead>
+                <tr class="fw-bolder text-muted">
+                  <th class="min-w-150px">Position</th>
+                  <th class="min-w-100px text-end">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <input
+                    type="text"
+                    class="form-control form-control-lg form-control-solid"
+                    placeholder="Enter Position."
+                    name="position"
+                    value=""
+                    [(ngModel)]="position" #ctrl="ngModel"
+                  />
+                  </td>
+                  <td>
+                    <div class="d-flex justify-content-end flex-shrink-0">
+                      <a  (click)="savePosition()" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm" >
+                      save
+                      </a>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+      </div>
+      <div class="modal-footer">
+        <!-- <button type="button" class="btn btn-outline-secondary" (click)="dismiss()"
+          *ngIf="modalConfig.hideDismissButton === undefined || !modalConfig.hideDismissButton()"
+          [disabled]="modalConfig.disableDismissButton !== undefined && modalConfig.disableDismissButton()">
+          {{ modalConfig.dismissButtonLabel }}
+        </button> -->
+        <button type="button" class="btn btn-outline-primary" (click)="close()"
+          *ngIf="modalConfig.hideCloseButton === undefined || !modalConfig.hideCloseButton()"
+          [disabled]="modalConfig.disableCloseButton !== undefined && modalConfig.disableCloseButton()">
+          {{ modalConfig.closeButtonLabel }}
+        </button>
+      </div>
+    </div>
+  </ng-template>
+  

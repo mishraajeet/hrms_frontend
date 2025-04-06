@@ -10,6 +10,48 @@
     <form [formGroup]="form" novalidate="" class="form">
       <div class="card-body border-top p-9">
         <div class="row mb-6">
+          <label class="col-lg-4 col-form-label fw-bold fs-6" for="profileImageInput">Profile Image</label>
+          <div class="col-lg-8">
+            <div class="d-flex flex-column align-items-start">
+              <!-- File Input -->
+              <div class="mb-3">
+                <input 
+                  id="profileImageInput" 
+                  type="file" 
+                  class="form-control" 
+                  (change)="onFileSelected($event)" 
+                  accept="image/*"
+                />
+              </div>
+        
+              <!-- Buttons -->
+              <div class="mb-3">
+                <button 
+                  class="btn btn-primary me-2" 
+                  (click)="onUpload()"
+                >Upload</button>
+                <button 
+                  class="btn btn-secondary" 
+                  (click)="onClear()"
+                >Clear</button>
+              </div>
+        
+              <!-- Image Preview -->
+              <div *ngIf="previewUrl" class="preview-container">
+                <img 
+                  [src]="previewUrl" 
+                  alt="Profile Image Preview" 
+                  class="rounded border img-fluid shadow-sm" 
+                  style="max-width: 150px; height: auto;"
+                  (load)="onImageLoad()"
+                  (error)="onImageError()"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- <div class="row mb-6">
           <label class="col-lg-4 col-form-label fw-bold fs-6">Profile Image</label>
           <div class="col-lg-8">
             <input type="file" (change)="onFileSelected($event)" />
@@ -18,7 +60,7 @@
               <img [src]="previewUrl" alt="Profile Image Preview" class="image-input-wrapper w-125px h-125px"/>
             </div>
           </div>
-        </div>
+        </div> -->
         
         <!-- <div class="row mb-6">
           <label class="col-lg-4 col-form-label fw-bold fs-6">Profile Image</label>
@@ -52,6 +94,12 @@
               <option value="Manual Entry">Manual Entry</option>
               <option value="Permanent Employees">Permanent Employees</option>
             </select>
+            <div class="fv-plugins-message-container invalid-feedback" *ngIf="
+            form.get('EmployeeNumberSeries')?.hasError('required') &&
+            form.get('EmployeeNumberSeries')?.touched
+          ">
+        Please select employee series
+      </div>
           </div>
         </div>
          <div class="row mb-6">
@@ -81,6 +129,12 @@
             value=""
             formControlName="FatherName"
           />
+          <div class="fv-plugins-message-container invalid-feedback" *ngIf="
+          form.get('FatherName')?.hasError('required') &&
+          form.get('FatherName')?.touched
+        ">
+      Please enter father name.
+    </div>
         </div>
         </div>
         <div class="row mb-6">
@@ -96,6 +150,12 @@
             value=""
             formControlName="SpouseName"
           />
+          <div class="fv-plugins-message-container invalid-feedback" *ngIf="
+          form.get('SpouseName')?.hasError('required') &&
+          form.get('SpouseName')?.touched
+        ">
+      Please enter spouce name.
+    </div>
         </div>
         </div>
         <div class="row mb-6">
@@ -111,6 +171,12 @@
             value=""
             formControlName="AdhaarNumber"
           />
+          <div class="fv-plugins-message-container invalid-feedback" *ngIf="
+          form.get('AdhaarNumber')?.hasError('required') &&
+          form.get('AdhaarNumber')?.touched
+        ">
+      Please enter adhaar number.
+    </div>
         </div>
         </div>
         <div class="row mb-6">
@@ -126,6 +192,12 @@
             value=""
             formControlName="Email"
           />
+          <div class="fv-plugins-message-container invalid-feedback" *ngIf="
+          form.get('Email')?.hasError('required') &&
+          form.get('Email')?.touched
+        ">
+      Please enter emailId.
+    </div>
         </div>
         </div>
         <div class="row mb-6">
@@ -144,6 +216,12 @@
               <option value="Female">Female</option>
               <option value="Other">Other</option>
             </select>
+            <div class="fv-plugins-message-container invalid-feedback" *ngIf="
+          form.get('Gender')?.hasError('required') &&
+          form.get('Gender')?.touched
+        ">
+      Please select gender.
+    </div>
           </div>
         </div>
         <div class="row mb-6">
@@ -157,8 +235,14 @@
             formControlName="ReportingManager"
           >
             <option value="">Select a RM</option>
-            <option value="AF" *ngFor="let i of rm">{{i.fullName}}</option>
+            <option value={{i._id}} *ngFor="let i of rm">{{i.fullName}}</option>
           </select>
+          <div class="fv-plugins-message-container invalid-feedback" *ngIf="
+          form.get('ReportingManager')?.hasError('required') &&
+          form.get('ReportingManager')?.touched
+        ">
+      Please select Reporting Manager.
+    </div>
         </div>
         </div>
         <div class="row mb-6">
@@ -174,6 +258,12 @@
             value=""
             formControlName="MobileNumber"
           />
+          <div class="fv-plugins-message-container invalid-feedback" *ngIf="
+          form.get('MobileNumber')?.hasError('required') &&
+          form.get('MobileNumber')?.touched
+        ">
+      Please select Reporting Manager.
+    </div>
         </div>
         </div>
         <div class="row mb-6">
@@ -192,9 +282,12 @@
             <option value="ca">Contract</option>
             <option value="cs">Permanant</option>
           </select>
-          <div class="form-text">
-            Please select a Status.
-          </div>
+          <div class="fv-plugins-message-container invalid-feedback" *ngIf="
+          form.get('Status')?.hasError('required') &&
+          form.get('Status')?.touched
+        ">
+      Please select Reporting Manager.
+    </div>
         </div>
         </div>
         <div class="row mb-6">
@@ -208,6 +301,12 @@
           value=""
           formControlName="DateOfJoining"
         />
+        <div class="fv-plugins-message-container invalid-feedback" *ngIf="
+        form.get('DateOfJoining')?.hasError('required') &&
+        form.get('DateOfJoining')?.touched
+      ">
+    Please select Joining date.
+  </div>
         </div>
         </div>
         <div class="row mb-6">
@@ -223,6 +322,12 @@
             value=""
             formControlName="ProbationPeriod"
           />
+          <div class="fv-plugins-message-container invalid-feedback" *ngIf="
+        form.get('ProbationPeriod')?.hasError('required') &&
+        form.get('ProbationPeriod')?.touched
+      ">
+    Please select Notice Period.
+  </div>
         </div>
         </div>
         <div class="row mb-6">
@@ -239,6 +344,12 @@
             value=""
             formControlName="ConfirmationDate"
           />
+          <div class="fv-plugins-message-container invalid-feedback" *ngIf="
+          form.get('ConfirmationDate')?.hasError('required') &&
+          form.get('ConfirmationDate')?.touched
+        ">
+      Please select Confirmation Date.
+    </div>
         </div>
         </div>
         <div class="row mb-6">
@@ -254,6 +365,12 @@
             value=""
             formControlName="EmergencyContactName"
           />
+          <div class="fv-plugins-message-container invalid-feedback" *ngIf="
+          form.get('EmergencyContactName')?.hasError('required') &&
+          form.get('EmergencyContactName')?.touched
+        ">
+      Please enter Emergency Contact Name.
+    </div>
         </div>
         </div>
         <div class="row mb-6">
@@ -270,9 +387,15 @@
             value=""
             formControlName="EmergencyContactNumber"
           />
+          <div class="fv-plugins-message-container invalid-feedback" *ngIf="
+          form.get('EmergencyContactNumber')?.hasError('required') &&
+          form.get('EmergencyContactNumber')?.touched
+        ">
+      Please enter Emergency Contact Name.
+    </div>
         </div>
         </div>
-        <div class="row mb-0">
+        <!-- <div class="row mb-0">
           <label class="col-lg-4 col-form-label fw-bold fs-6"
             >Allow the employee to fill in their information</label
           >
@@ -286,7 +409,7 @@
               /><label class="form-check-label"></label>
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
       <!-- <div class="card-footer d-flex justify-content-end py-6 px-9">
         <button

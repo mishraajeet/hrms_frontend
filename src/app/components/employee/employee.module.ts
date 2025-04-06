@@ -26,6 +26,7 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { ProfileDetailsComponent } from './profile/profile-details/profile-details.component';
 import { AccountComponent } from './profile/account/account.component';
 import { SearchEmpComponent } from './profile/search-emp/search-emp.component';
+import { AddPositionComponent } from './popup/add-position/add-position.component';
 
 
 @NgModule({
@@ -45,6 +46,7 @@ import { SearchEmpComponent } from './profile/search-emp/search-emp.component';
     ProfileDetailsComponent,
     AccountComponent,
     SearchEmpComponent,
+    AddPositionComponent,
   ],
   imports: [
     CommonModule,

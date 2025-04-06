@@ -48,7 +48,7 @@ export class Step2Component implements OnInit, OnDestroy {
       AdhaarNumber: [this.defaultValues.AdhaarNumber, [Validators.required]],
       Email: [this.defaultValues.Email, [Validators.required,Validators.email]],
       Gender: [this.defaultValues.Gender, [Validators.required]],
-      ReportingManager: [this.defaultValues.ReportingManager, [Validators.required]],
+      ReportingManager: [this.defaultValues.ReportingManager,[Validators.required]],
       MobileNumber: [this.defaultValues.MobileNumber, [Validators.required]],
       Status: [this.defaultValues.Status, [Validators.required]],
       DateOfJoining: ['',Validators.required],
@@ -117,5 +117,17 @@ export class Step2Component implements OnInit, OnDestroy {
       this.form.patchValue({img: res.imageUrl})
       console.log('Upload successful:', res);
     })
+  }
+  onClear(): void {
+    console.log('Clear button clicked.');
+    this.previewUrl = null; // Reset the preview URL
+  }
+  
+  onImageLoad(): void {
+    console.log('Image preview loaded successfully.');
+  }
+  
+  onImageError(): void {
+    console.error('Error loading preview image.');
   }
 }

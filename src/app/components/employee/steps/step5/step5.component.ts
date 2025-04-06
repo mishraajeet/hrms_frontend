@@ -30,11 +30,20 @@ export class Step5Component implements OnInit, OnDestroy  {
       bankName: ['', [Validators.required]],
       bankBranch: ['',[Validators.required]],
       accountNumber: ['',[Validators.required]],
-      dDPayableAt: ['', [Validators.required]]
+      ifsc_code: ['', [Validators.required]]
     });
 
     const formChangesSubscr = this.form.valueChanges.subscribe((val) => {
-      this.updateParentModel(val, this.checkForm());
+      let obj :any = {
+        accountdetails:{
+          paymentType: val.paymentType,
+          bankName: val.bankName,
+          bankBranch: val.bankBranch,
+          accountNumber: val.accountNumber,
+          ifsc_code: val.ifsc_code
+        }
+      }
+      this.updateParentModel(obj, this.checkForm());
     });
     this.unsubscribe.push(formChangesSubscr);
   }
@@ -45,7 +54,7 @@ export class Step5Component implements OnInit, OnDestroy  {
       this.form.get('bankName')?.hasError('required') ||
       this.form.get('bankBranch')?.hasError('required') ||
       this.form.get('accountNumber')?.hasError('required') ||
-      this.form.get('dDPayableAt')?.hasError('required')
+      this.form.get('ifsc_code')?.hasError('required')
     );
   }
 

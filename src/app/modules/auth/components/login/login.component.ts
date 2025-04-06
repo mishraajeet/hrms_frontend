@@ -81,6 +81,7 @@ export class LoginComponent implements OnInit, OnDestroy {
       .subscribe((user: any) => {
         debugger
         if (user) {
+          localStorage.setItem('currentUser', JSON.stringify(user))
           this.authService.currentUserSubject.next(user);
           this.router.navigate([this.returnUrl]);
         } else {

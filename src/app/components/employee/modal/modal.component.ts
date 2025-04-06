@@ -3,6 +3,7 @@ import { ModalConfig } from '../modal.config';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { GlobalService } from '../../../services/global.service';
 import { EployeeService } from '../../../services/employee/eployee.service';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-modal',
@@ -12,7 +13,7 @@ export class ModalComponent {
   @Input() public modalConfig: ModalConfig;
   @Output() addedPosition = new EventEmitter<any>
 
-  @ViewChild('modal') private modalContent: TemplateRef<ModalComponent>;
+  @ViewChild('subposition') private modalContent: TemplateRef<ModalComponent>;
   private modalRef: NgbModalRef;
 
   description: any;
@@ -68,12 +69,11 @@ export class ModalComponent {
 
   savePosition(){
     const obj = {
-     Description: this.description,
-     Code : this.code,
-     type: this.modalConfig.type,
+     description: this.description,
+     code : this.code,
      isActive: this.isActivePosition
      }
-    this.empService.addPosition(obj).subscribe((res:any)=>{
+    this.empService.updatePosition({id: this.modalConfig.id},obj).subscribe((res:any)=>{
      this.clearFilter();
      this.close();
      if(res.result){
@@ -84,4 +84,35 @@ export class ModalComponent {
        this.global.showErrorMsg(`Something went wrong!`)
     })
    }
+
+
+  async deletePosition(value: any) {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        let param = {
+          id: value._id
+        }
+        this.empService.deleteSubPosition({id: this.modalConfig.id},param).subscribe((res: any) => {
+          if (res.result) {
+            this.clearFilter();
+            this.close();
+            this.addedPosition.emit(res.data)
+            Swal.fire({
+              title: "Deleted!",
+              text: `Successfully deleted position`,
+              icon: "success"
+            });
+          }
+        })
+      }
+    });
+  }
 }

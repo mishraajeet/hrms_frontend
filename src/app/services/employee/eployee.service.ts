@@ -10,8 +10,10 @@ export class EployeeService {
   constructor(private rest: RestService) { }
   
   addPosition(param = {}){ return this.rest.post( `${this.api}addPosition`, param); }
-  updatePosition(param = {}){ return this.rest.post( `${this.api}updatePosition`, param); }
+  updatePosition(param = {},obj:any){ return this.rest.put( `${this.api}updatePosition`, param,obj); }
   getAllPositions(param = {}){ return this.rest.post( `${this.api}getAllPositions`, param); }
+  deleteEmpPosition(param = {}){ return this.rest.delete(`${this.api}deleteempPosition`,param)}
+  deleteSubPosition(param = {},obj:any){ return this.rest.put(`${this.api}deleteSubPosition`,param,obj)}
   getEmpBirthday(){ return this.rest.get( `${this.userApi}getEmpBirthday`); }
   getNewJoiningEmp(){ return this.rest.get( `${this.userApi}getNewJoiningEmp`); }
 

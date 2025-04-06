@@ -12,5 +12,6 @@ export interface ModalConfig {
     disableDismissButton?(): boolean;
     hideCloseButton?(): boolean;
     hideDismissButton?(): boolean;
+    id:string
   }
   

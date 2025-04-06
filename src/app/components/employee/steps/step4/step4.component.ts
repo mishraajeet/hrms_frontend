@@ -39,7 +39,19 @@ export class Step4Component implements OnInit, OnDestroy {
     });
 
     const formChangesSubscr = this.form.valueChanges.subscribe((val) => {
-      this.updateParentModel(val, this.checkForm());
+      let obj: any = {
+        emp_pf: {
+          panNumber: val.panNumber,
+          IncludePF: val.IncludePF,
+          IncludeESI:val.IncludeESI,
+          IncludeLWF: val.IncludeLWF,
+          PFNumber: val.PFNumber,
+          UANNumber: val.UANNumber,
+          contribution: val.contribution,
+          ESINumber : val.ESINumber
+        }
+      }
+      this.updateParentModel(obj, this.checkForm());
     });
     this.unsubscribe.push(formChangesSubscr);
   }

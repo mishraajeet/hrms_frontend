@@ -28,6 +28,8 @@ const Routing: Routes = [
   },
   { path: 'leave', loadChildren: () => import('../components/leave/leave.module').then(m => m.LeaveModule) },
   { path: 'employee', loadChildren: () => import('../components/employee/employee.module').then(m => m.EmployeeModule) },
+  { path: 'profile', loadChildren: () => import('../components/profile/profile.module').then(m => m.ProfileModule) },
+
   {
     path: '',
     redirectTo: '/dashboard',

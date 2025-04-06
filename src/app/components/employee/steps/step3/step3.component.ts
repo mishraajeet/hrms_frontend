@@ -1,5 +1,5 @@
 import { Component, Input, OnDestroy, OnInit, AfterViewInit, ViewChild, Output, EventEmitter } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { ICreateAccount } from '../../create-account.helper';
 import { Store } from '@ngrx/store';
@@ -8,8 +8,9 @@ import * as empAction from '../../state/employee.action';
 import { EployeeService } from '../../../../services/employee/eployee.service';
 import { GlobalService } from '../../../../services/global.service';
 import { ModalComponent } from '../../modal/modal.component';
+import { AddPositionComponent } from '../../popup/add-position/add-position.component';
 import { ModalConfig } from '../../modal.config';
-
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-step3',
@@ -18,8 +19,11 @@ import { ModalConfig } from '../../modal.config';
 export class Step3Component implements OnInit, OnDestroy {
   @Input() public allPosition: any
   @Output() newPosition = new EventEmitter<any>()
+  @Output() newParentPosition = new EventEmitter<any>()
+  @Output() deletedPosition = new EventEmitter<any>()
 
-  @ViewChild('modal') private modalComponent: ModalComponent;
+  @ViewChild('subposition') private modalComponent: ModalComponent;
+  @ViewChild('modal') private AddPositionComponent: AddPositionComponent
 
   isActive: Boolean;
   isActivePosition: Boolean = false
@@ -38,7 +42,8 @@ export class Step3Component implements OnInit, OnDestroy {
     dismissButtonLabel: 'Submit',
     closeButtonLabel: 'Cancel',
     data: [],
-    type: ""
+    type: "",
+    id: ''
   };
 
   @Input('updateParentModel') updateParentModel: (
@@ -56,82 +61,102 @@ export class Step3Component implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    this.Division = this.allPosition.filter((e: any) => e.type === 'Division')
-    this.Cost_Center = this.allPosition.filter((e: any) => e.type === 'Cost Center')
-    this.Department = this.allPosition.filter((e: any) => e.type === 'Department')
-    this.Grade = this.allPosition.filter((e: any) => e.type === 'Grade')
-    this.Designation = this.allPosition.filter((e: any) => e.type === 'Designation')
-    this.Location = this.allPosition.filter((e: any) => e.type === 'Location')
-    this.Company = this.allPosition.filter((e: any) => e.type === 'Company')
-    this.Job_Title = this.allPosition.filter((e: any) => e.type === 'Job Title')
-    
     this.initForm();
     this.updateParentModel({}, this.checkForm());
   }
 
+  get items(): FormArray {
+    return this.form.get('items') as FormArray;
+  }
+
   initForm() {
     this.form = this.fb.group({
-      Division: ['', [Validators.required]],
-      Cost_Center: ['',[Validators.required]],
-      Department: ['', [Validators.required]],
-      Grade: ['', [Validators.required]],
-      Designation: ['',[Validators.required]],
-      Location: ['',[Validators.required]],
-      Company: ['',[Validators.required]],
-      Job_Title: ['',[Validators.required]],
+      items: this.fb.array([]),
     });
 
-    const formChangesSubscr = this.form.valueChanges.subscribe((val) => {
-      this.updateParentModel(val, this.checkForm());
+    const formChangesSubscr = this.items.valueChanges.subscribe((val) => {
+      let obj: any = { emp_position: val }
+      this.updateParentModel(obj, this.checkForm());
     });
     this.unsubscribe.push(formChangesSubscr);
+
+    this.allPosition.forEach((p: any) => {
+      const group = this.fb.group({
+        position: [p.position],
+        selectedSubPosition: ['']
+      })
+      this.items.push(group);
+    })
   }
 
   checkForm() {
-    return !(
-      this.form.get('businessName')?.hasError('required') ||
-      this.form.get('businessDescriptor')?.hasError('required') ||
-      this.form.get('businessType')?.hasError('required') ||
-      this.form.get('businessEmail')?.hasError('required') ||
-      this.form.get('businessEmail')?.hasError('email')
-    );
+    return true;
   }
 
   ngOnDestroy() {
     this.unsubscribe.forEach((sb) => sb.unsubscribe());
   }
+
+  addParentPosition(event:any){
+    const group = this.fb.group({
+      position: [event.position],
+      selectedSubPosition: ['']
+    })
+    this.items.push(group);
+    this.allPosition.push(event)
+    this.newParentPosition.emit(this.allPosition)
+  }
   addedPosition(event: any) {
     this.newPosition.emit(event)
-    switch (event.type) {
-      case 'Division':
-        this.Division.push(event);
-        break;
-      case 'Cost Center':
-        this.Cost_Center.push(event);
-        break;
-      case 'Department':
-        this.Department.push(event);
-        break;
-      case 'Grade':
-        this.Grade.push(event);
-        break;
-      case 'Designation':
-        this.Designation.push(event);
-        break;
-      case 'Location':
-        this.Location.push(event);
-        break;
-      case 'Company':
-        this.Company.push(event);
-        break;
-      case 'Job Title':
-        this.Job_Title.push(event);
-        break;
-    }
+    this.allPosition.forEach((e: any) => {
+      if (e.position == event.position) {
+        e.sub_position = event.sub_position;
+      }
+    });
   }
-  async openModal(type: String) {
-    this.modalConfig["type"] = type
-    this.modalConfig["data"] = this.allPosition.filter((e: any) => e.type === type)
+  
+  async openModal(value: any) {
+    this.modalConfig['id'] = value._id
+    this.modalConfig["type"] = value.position
+    this.modalConfig["data"] = value.sub_position
     return await this.modalComponent.open();
+  }
+
+  async addPosition() {
+    return await this.AddPositionComponent.open();
+  }
+
+  async deletePosition(value: any) {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        let param = {
+          id: value._id
+        }
+        this.empService.deleteEmpPosition(param).subscribe((res: any) => {
+          if (res.result) {
+            this.allPosition.forEach((e: any, i: number) => {
+              if (e.position == res.data.position) {
+                this.items.controls.splice(i,1);
+                this.allPosition.splice(i, 1)
+              }
+            });
+            this.deletedPosition.emit(this.allPosition)
+            Swal.fire({
+              title: "Deleted!",
+              text: `Successfully deleted position`,
+              icon: "success"
+            });
+          }
+        })
+      }
+    });
   }
 }

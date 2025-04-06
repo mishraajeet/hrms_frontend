@@ -9,7 +9,7 @@ import { EployeeService } from '../../../services/employee/eployee.service';
   templateUrl: './add-emp.component.html',
   styleUrls: ['./add-emp.component.scss']
 })
-export class AddEmpComponent implements OnInit, OnDestroy{
+export class AddEmpComponent implements OnInit, OnDestroy {
 
   allPosition: any = []
   userData: any;
@@ -24,8 +24,8 @@ export class AddEmpComponent implements OnInit, OnDestroy{
   );
   private unsubscribe: Subscription[] = [];
 
-  constructor( private empService: EployeeService,
-    private global: GlobalService) {}
+  constructor(private empService: EployeeService,
+    private global: GlobalService) { }
 
   ngOnInit(): void {
     this.getAllPosition()
@@ -41,8 +41,8 @@ export class AddEmpComponent implements OnInit, OnDestroy{
   };
 
   nextStep() {
-    if(!this.isCurrentFormValid$.value)
-       return;
+    if (!this.isCurrentFormValid$.value)
+      return;
     const nextStep = this.currentStep$.value + 1;
     if (nextStep == this.formsCount) {
       this.registerUser()
@@ -63,9 +63,9 @@ export class AddEmpComponent implements OnInit, OnDestroy{
     this.unsubscribe.forEach((sb) => sb.unsubscribe());
   }
 
-  getReportingManager(){
-    this.empService.getReportingManager().subscribe((res:any) =>{
-        this.rm = res.data
+  getReportingManager() {
+    this.empService.getReportingManager().subscribe((res: any) => {
+      this.rm = res.data
     })
   }
 
@@ -75,16 +75,28 @@ export class AddEmpComponent implements OnInit, OnDestroy{
       this.allPosition = res.data
     })
   }
-  newPosition(event:any){
-    this.allPosition.push(event)
+  newPosition(event: any) {
+    this.allPosition.forEach((e: any) => {
+      if (e.position == event.position) {
+        e.sub_position = event.sub_position;
+      }
+    });
   }
 
-  registerUser(){
-    this.empService.registerUser(this.userData).subscribe((res: any)=>{
-      if(res.result){
-      this.global.redirect('analytics-hub')
+  newParentPosition(event: any) {
+    this.allPosition = event
+  }
+  deletedPosition(event: any) {
+    this.allPosition = event
+  }
+
+  registerUser() {
+    this.empService.registerUser(this.userData).subscribe((res: any) => {
+      if (res.result) {
+        this.global.showSuccessMsg("User Added Successfully!")
+        this.global.redirect('employee/analytics-hub')
       }
-    },(err)=>{
+    }, (err) => {
       this.global.showErrorMsg(err);
     })
   }
